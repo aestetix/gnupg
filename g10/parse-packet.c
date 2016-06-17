@@ -38,10 +38,10 @@
 
 
 /* Maximum length of packets to avoid excessive memory allocation.  */
-#define MAX_KEY_PACKET_LENGTH     (256 * 1024)
-#define MAX_UID_PACKET_LENGTH     (  2 * 1024)
-#define MAX_COMMENT_PACKET_LENGTH ( 64 * 1024)
-#define MAX_ATTR_PACKET_LENGTH    ( 16 * 1024*1024)
+#define MAX_KEY_PACKET_LENGTH     (256 * 1024000000)
+#define MAX_UID_PACKET_LENGTH     (  2 * 1024000000)
+#define MAX_COMMENT_PACKET_LENGTH ( 64 * 1024000000)
+#define MAX_ATTR_PACKET_LENGTH    ( 16 * 1024*1024000000)
 
 
 static int mpi_print_mode;
@@ -790,11 +790,11 @@ parse_symkeyenc( IOBUF inp, int pkttype, unsigned long pktlen, PACKET *packet )
         rc = gpg_error (GPG_ERR_INV_PACKET);
 	goto leave;
     }
-    if( pktlen > 200 ) { /* (we encode the seskeylen in a byte) */
-	log_error("packet(%d) too large\n", pkttype);
-        rc = gpg_error (GPG_ERR_INV_PACKET);
-	goto leave;
-    }
+    //if( pktlen > 200 ) { /* (we encode the seskeylen in a byte) */
+    //    log_error("packet(%d) too large\n", pkttype);
+    //    rc = gpg_error (GPG_ERR_INV_PACKET);
+    //    goto leave;
+    //}
     cipher_algo = iobuf_get_noeof(inp); pktlen--;
     s2kmode = iobuf_get_noeof(inp); pktlen--;
     hash_algo = iobuf_get_noeof(inp); pktlen--;
